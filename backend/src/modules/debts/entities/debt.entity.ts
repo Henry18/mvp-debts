@@ -4,6 +4,7 @@ import {
   ID,
   Float,
   registerEnumType,
+  GraphQLISODateTime,
 } from '@nestjs/graphql';
 import {
   Entity,
@@ -69,11 +70,11 @@ export class Debt {
   @Column()
   creditorId: string;
 
-  @Field()
+  @Field(() => GraphQLISODateTime, { nullable: true })
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt?: Date;
 
-  @Field()
+  @Field(() => GraphQLISODateTime, { nullable: true })
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt?: Date;
 }

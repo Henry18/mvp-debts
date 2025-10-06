@@ -60,9 +60,9 @@ export class DebtsService {
     const cacheKey = `debts:all:${JSON.stringify(filter || {})}`;
     const cached = await this.cacheManager.get<Debt[]>(cacheKey);
 
-    /*if (cached) {
+    if (cached) {
       return cached;
-    }*/
+    }
 
     const queryBuilder = this.debtsRepository.createQueryBuilder('debt');
 
@@ -91,7 +91,7 @@ export class DebtsService {
 
     const debts = await queryBuilder.getMany();
 
-    await this.cacheManager.set(cacheKey, debts, 300000); // 5 minutos
+    await this.cacheManager.set(cacheKey, debts, 120000);
 
     return debts;
   }
@@ -113,14 +113,13 @@ export class DebtsService {
       throw new NotFoundException(`Deuda con ID ${id} no encontrada`);
     }
 
-    // Verificar que las relaciones se cargaron
     if (!debt.debtor || !debt.creditor) {
       throw new NotFoundException(
         `Error al cargar las relaciones de la deuda ${id}`,
       );
     }
 
-    await this.cacheManager.set(cacheKey, debt, 300000);
+    await this.cacheManager.set(cacheKey, debt, 120000);
 
     return debt;
   }
@@ -128,7 +127,6 @@ export class DebtsService {
   async findByUser(userId: string, status?: DebtStatus): Promise<Debt[]> {
     const filter: DebtsFilterArgs = {};
 
-    // Buscar deudas donde el usuario es deudor O acreedor
     const queryBuilder = this.debtsRepository.createQueryBuilder('debt');
 
     queryBuilder.where(
@@ -151,17 +149,14 @@ export class DebtsService {
   async update(id: string, updateDebtInput: UpdateDebtInput): Promise<Debt> {
     const debt = await this.findOne(id);
 
-    // Validación: Una deuda pagada no puede ser modificada
     if (debt.status === DebtStatus.PAID) {
       throw new BadRequestException('No se puede modificar una deuda pagada');
     }
 
-    // Validación: El monto no puede ser negativo
     if (updateDebtInput.amount !== undefined && updateDebtInput.amount <= 0) {
       throw new BadRequestException('El monto debe ser mayor a 0');
     }
 
-    // Si se cambian usuarios, validar que existan
     if (updateDebtInput.debtorId) {
       await this.usersService.findOne(updateDebtInput.debtorId);
     }
@@ -260,7 +255,7 @@ export class DebtsService {
       }
     });
 
-    await this.cacheManager.set(cacheKey, summary, 300000);
+    await this.cacheManager.set(cacheKey, summary, 120000);
 
     return summary;
   }
