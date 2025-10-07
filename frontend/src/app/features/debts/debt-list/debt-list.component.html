@@ -1,0 +1,34 @@
+<app-shell></app-shell>
+<section class="page-head container">
+  <div class="actions">
+    <button mat-stroked-button class="btn-export" (click)="exportCsv()" [disabled]="exporting()==='csv'">
+      <mat-progress-spinner *ngIf="exporting()==='csv'" diameter="14" mode="indeterminate"></mat-progress-spinner>
+      <mat-icon *ngIf="exporting()!=='csv'">table_view</mat-icon>
+      CSV
+    </button>
+
+    <button mat-stroked-button class="btn-export" (click)="exportJson()" [disabled]="exporting()==='json'">
+      <mat-progress-spinner *ngIf="exporting()==='json'" diameter="14" mode="indeterminate"></mat-progress-spinner>
+      <mat-icon *ngIf="exporting()!=='json'">data_object</mat-icon>
+      JSON
+    </button>
+  </div>
+</section>
+<section class="container">
+  <div class="grid">
+    @for (d of debts(); track d.id) {
+    <article class="debt-card" [routerLink]="['/deudas', d.id]" tabindex="0">
+      <header class="debt-head">
+        <div class="title">{{ d.description }}</div>
+        <div class="amount">$ {{ d.amount | number:'1.2-2' }}</div>
+      </header>
+      <footer class="debt-foot">
+        <span class="chip" [class.pending]="d.status==='PENDING'" [class.paid]="d.status==='PAID'">
+          {{ d.status }}
+        </span>
+        <span class="meta"> {{ d.createdAt | date:'mediumDate' }} </span>
+      </footer>
+    </article>
+    }
+  </div>
+</section>

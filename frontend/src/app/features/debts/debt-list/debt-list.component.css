@@ -1,0 +1,120 @@
+.page-head {
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.debt-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0, 0, 0, .06);
+  padding: 14px 16px;
+  display: grid;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  outline: none;
+}
+
+.debt-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, .08), 0 10px 10px rgba(0, 0, 0, .04);
+  border-color: rgba(63, 81, 181, .25);
+}
+
+.debt-card:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 35%, transparent);
+}
+
+.debt-head {
+  display: flex;
+  align-items: start;
+  gap: 12px;
+}
+
+.debt-head .title {
+  font-weight: 700;
+  line-height: 1.25;
+  flex: 1 1 auto;
+}
+
+.debt-head .amount {
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--text);
+}
+
+.debt-foot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.debt-foot .meta {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.page-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-export {
+  border-radius: 999px;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 14px;
+  border: 1px solid rgba(63, 81, 181, .25);
+  background: var(--primary-50);
+  color: var(--text);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .03) inset;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, background .15s ease;
+}
+
+.btn-export:hover {
+  background: #e5e9ff;
+  border-color: rgba(63, 81, 181, .35);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, .06);
+}
+
+.btn-export:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 35%, transparent);
+}
+
+.btn-export[disabled] {
+  opacity: .75;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-export mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.btn-export .mat-mdc-progress-spinner {
+  margin-right: 8px;
+}
