@@ -1,0 +1,53 @@
+<app-shell></app-shell>
+<section class="container">
+  <a routerLink="/deudas" class="back">
+    <mat-icon>arrow_back</mat-icon> Volver
+  </a>
+
+  <div class="panel" *ngIf="!loading(); else loadingTpl">
+    <header class="head">
+      <h1 class="title">{{ debt()?.description }}</h1>
+      <span class="chip" [class.paid]="debt()?.status==='PAID'" [class.pending]="debt()?.status==='PENDING'">
+        {{ debt()?.status }}
+      </span>
+    </header>
+
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">Monto</div>
+        <div class="meta-value">$ {{ debt()?.amount | number:'1.2-2' }}</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Fecha</div>
+        <div class="meta-value">{{ debt()?.createdAt | date:'mediumDate' }}</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Deudor</div>
+        <div class="meta-value">{{ debt()?.debtor?.name || '—' }} <small *ngIf="debt()?.debtor?.email">({{
+            debt()?.debtor?.email }})</small></div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Acreedor</div>
+        <div class="meta-value">{{ debt()?.creditor?.name || '—' }} <small *ngIf="debt()?.creditor?.email">({{
+            debt()?.creditor?.email }})</small></div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" (click)="markPaid()" [disabled]="debt()?.status==='PAID' || paying()">
+        <mat-progress-spinner *ngIf="paying()" diameter="16" mode="indeterminate"></mat-progress-spinner>
+        <span *ngIf="!paying()">
+          <mat-icon>check_circle</mat-icon>
+          Marcar como pagada
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <ng-template #loadingTpl>
+    <div class="loading">
+      <mat-progress-spinner diameter="28" mode="indeterminate"></mat-progress-spinner>
+      Cargando…
+    </div>
+  </ng-template>
+</section>

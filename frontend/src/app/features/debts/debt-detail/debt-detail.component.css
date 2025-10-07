@@ -1,0 +1,84 @@
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.panel {
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid rgba(0, 0, 0, .06);
+  box-shadow: var(--shadow);
+  padding: clamp(16px, 3vw, 28px);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1.2;
+}
+
+.meta-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-top: 6px;
+  margin-bottom: 14px;
+}
+
+.meta-label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.meta-value {
+  font-weight: 600;
+}
+
+.actions {
+  margin-top: 10px;
+}
+
+button mat-icon {
+  margin-right: 6px;
+}
+
+button .mat-mdc-progress-spinner {
+  margin-right: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.chip.paid {
+  background: #d6f6dd;
+  color: #0f6c2c;
+}
+
+.chip.pending {
+  background: #fff4cc;
+  color: #7a5e00;
+}
+
+.loading {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: var(--muted);
+  padding: 12px 0;
+}
