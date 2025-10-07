@@ -1,0 +1,38 @@
+<mat-toolbar color="primary">
+  <span>Deudas</span>
+  <span class="spacer"></span>
+
+  <a mat-button routerLink="/deudas">Todas</a>
+  <a mat-button routerLink="/deudas/pendings">Pendientes</a>
+  <a mat-button routerLink="/deudas/paids">Pagadas</a>
+  <a mat-button routerLink="/deudas/nueva">Nueva</a>
+
+  <!-- Cuenta (aparece en todas las vistas) -->
+  <button mat-button [matMenuTriggerFor]="accountMenu" class="account-btn">
+    <mat-icon>account_circle</mat-icon>
+    <span class="hide-sm">
+      {{ (user()?.name || user()?.email || 'Mi cuenta') }}
+    </span>
+  </button>
+  <mat-menu #accountMenu="matMenu">
+    <button mat-menu-item disabled>
+      <div class="menu-block">
+        <div class="menu-name">{{ user()?.name || 'Sin nombre' }}</div>
+        <div class="menu-email" *ngIf="user()?.email">{{ user()?.email }}</div>
+        <div class="menu-id">ID: {{ user()?.id }}</div>
+      </div>
+    </button>
+    <button mat-menu-item (click)="copyId()">
+      <mat-icon>content_copy</mat-icon>
+      <span>Copiar ID</span>
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Salir</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

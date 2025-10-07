@@ -1,0 +1,30 @@
+.full {
+  width: 100%;
+}
+.debt-form {
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid rgba(0, 0, 0, .06);
+  box-shadow: var(--shadow);
+  padding: clamp(16px, 3vw, 28px);
+  max-width: 640px;
+  margin: 8px auto 0;
+}
+
+.debt-form h2 {
+  margin: 0 0 10px;
+  font-size: clamp(20px, 2.2vw, 28px);
+}
+
+.form {
+  display: grid;
+  gap: 12px;
+}
+
+.full {
+  width: 100%;
+}
+
+button .mat-mdc-progress-spinner {
+  margin-right: 8px;
+}

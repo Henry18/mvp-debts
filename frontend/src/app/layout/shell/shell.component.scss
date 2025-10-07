@@ -1,0 +1,28 @@
+.spacer {
+  flex: 1;
+}
+
+:host ::ng-deep .mat-toolbar {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, .06);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.mat-toolbar a[mat-button],
+.mat-toolbar button[mat-button] {
+  border-radius: 999px;
+}
+
+.mat-toolbar a[mat-button]:hover,
+.mat-toolbar button[mat-button]:hover {
+  background: var(--primary-50);
+}
+
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 16px 20px;
+}
