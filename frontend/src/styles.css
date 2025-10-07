@@ -1,0 +1,62 @@
+:root {
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --text: #1f252e;
+  --muted: #6b7280;
+
+  --primary: #3f51b5;
+  --primary-50: #eef2ff;
+
+  --ring: #3f51b5;
+  --radius: 16px;
+
+  --shadow: 0 10px 24px rgba(0, 0, 0, .06), 0 6px 6px rgba(0, 0, 0, .04);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+}
+
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 16px 20px;
+}
+
+h1.page-title {
+  font-size: clamp(20px, 2.2vw, 28px);
+  margin: 0 0 12px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.chip.pending {
+  background: #fff4cc;
+  color: #7a5e00;
+}
+
+.chip.paid {
+  background: #d6f6dd;
+  color: #0f6c2c;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
